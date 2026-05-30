@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZenPaw - Focus with Your Companion Pet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #111827;
+            --accent-sage: #84a98c;
+            --accent-sage-glow: rgba(132, 169, 140, 0.15);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --gradient-accent: linear-gradient(135deg, #a78bfa, #6366f1);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-bg-hover: rgba(255, 255, 255, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-sage);
+        }
+
+        .lang-select {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-primary);
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-select:hover {
+            border-color: var(--accent-sage);
+            background-color: var(--card-bg-hover);
+        }
+
+        .hero {
+            max-width: 1000px;
+            margin: 80px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #ffffff 40%, var(--accent-sage));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--gradient-accent);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(99, 102, 241, 0.6);
+        }
+
+        .btn-secondary {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--card-bg-hover);
+            border-color: var(--text-secondary);
+            transform: translateY(-2px);
+        }
+
+        .features {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 32px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top left, var(--accent-sage-glow), transparent 70%);
+            pointer-events: none;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(132, 169, 140, 0.3);
+            background: var(--card-bg-hover);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .feature-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .pricing {
+            max-width: 1000px;
+            margin: 120px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .pricing h2 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .pricing-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 60px;
+            font-size: 1.1rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            align-items: stretch;
+        }
+
+        .pricing-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card.premium {
+            border-color: rgba(99, 102, 241, 0.4);
+            background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(99, 102, 241, 0.02) 100%);
+        }
+
+        .pricing-card.premium::after {
+            content: 'POPULAR';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-accent);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 16px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+        }
+
+        .pricing-card:hover {
+            transform: scale(1.02);
+            border-color: rgba(255,255,255,0.2);
+        }
+
+        .pricing-card.premium:hover {
+            border-color: rgba(99, 102, 241, 0.8);
+        }
+
+        .price-name {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .price-amount {
+            font-size: 2.75rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 24px;
+        }
+
+        .price-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 40px;
+        }
+
+        .price-features li {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-features li::before {
+            content: '✓';
+            color: var(--accent-sage);
+            font-weight: bold;
+        }
+
+        .privacy-cta {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 48px;
+            background: radial-gradient(circle at center, rgba(132, 169, 140, 0.08), transparent 70%);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            text-align: center;
+        }
+
+        .privacy-cta h3 {
+            font-size: 1.75rem;
+            margin-bottom: 12px;
+        }
+
+        .privacy-cta p {
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            font-size: 1rem;
+        }
+
+        footer {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px 40px 20px;
+            border-top: 1px solid var(--card-border);
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-sage);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .features {
+                grid-template-columns: 1fr;
+            }
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">🧘 <span>ZenPaw</span></a>
+        <select class="lang-select" id="langSelect" onchange="switchLanguage(this.value)">
+            <option value="en">English</option>
+            <option value="zh-Hant">繁體中文</option>
+            <option value="zh-Hans">简体中文</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+        </select>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1 id="heroTitle">Focus, Grow, Companion</h1>
+            <p id="heroSubtitle">Transform your daily focus sessions into nourishing energy to adopt and grow loyal virtual companion pets. Fully local-first and privacy-focused.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary" id="btnDownload"> App Store Download</a>
+                <a href="privacy.html" class="btn btn-secondary" id="btnPrivacy">Privacy Policy</a>
+            </div>
+        </section>
+
+        <section class="features" id="featuresSection">
+            <div class="feature-card">
+                <span class="feature-icon">⏱️</span>
+                <h3 class="f-title">Focus Timer & Live Activities</h3>
+                <p class="f-desc">Stay away from phone distractions. Keep track of focus session countdowns seamlessly with Lock Screen Live Activities and Dynamic Island integrations.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🐱</span>
+                <h3 class="f-title">Companion Growth System</h3>
+                <p class="f-desc">Earn focus coins to feed and bathe your pet. Guide them from cute baby stages up to adulthood, experiencing unique companionship milestones.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🌈</span>
+                <h3 class="f-title">Burial Hall & Offspring</h3>
+                <p class="f-desc">Give your senior pets a peaceful send-off at the Heaven Memorial Hall. Keep their legacy alive by adopting and raising their offspring.</p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🐾</span>
+                <h3 class="f-title">Adopt Local</h3>
+                <p class="f-desc">Connect with real-world local animal shelters. Find contact details and donation sites directly to support real shelter companions natively.</p>
+            </div>
+        </section>
+
+        <section class="pricing">
+            <h2 id="pricingTitle">Get ZenPaw+ Premium</h2>
+            <p class="pricing-subtitle" id="pricingSubtitle">Unlock unlimited virtual companion care, extra slots, and support shelter pets.</p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div>
+                        <div class="price-name" id="p1Name">Pro Monthly</div>
+                        <div class="price-amount" id="p1Price">$3.79</div>
+                        <ul class="price-features" id="p1Features">
+                            <li>Unlock salon service & hotel</li>
+                            <li>Enable custom widget templates</li>
+                            <li>Unlock Face ID privacy lock</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn btn-secondary p-btn">Subscribe Now</a>
+                </div>
+                <div class="pricing-card premium">
+                    <div>
+                        <div class="price-name" id="p2Name">Pro Annual</div>
+                        <div class="price-amount" id="p2Price">$22.90</div>
+                        <ul class="price-features" id="p2Features">
+                            <li>Includes 1-Week Free Trial</li>
+                            <li>Unlock all salon & hotel styles</li>
+                            <li>Face ID lock & Widgets</li>
+                            <li>Save 50% compared to monthly</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn btn-primary p-btn">Start Free Trial</a>
+                </div>
+                <div class="pricing-card">
+                    <div>
+                        <div class="price-name" id="p3Name">Pro Lifetime</div>
+                        <div class="price-amount" id="p3Price">$56.90</div>
+                        <ul class="price-features" id="p3Features">
+                            <li>One-time purchase, forever pro</li>
+                            <li>Family Sharing enabled</li>
+                            <li>Supports real animal shelters</li>
+                            <li>Lifetime updates included</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="btn btn-secondary p-btn">Unlock Lifetime</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="privacy-cta">
+            <h3 id="privacyCtaTitle">Local-First Privacy Architecture</h3>
+            <p id="privacyCtaDesc">ZenPaw values your privacy above all. All focus logs, statistics, and companion pet data are securely processed locally using Apple SwiftData. Zero tracker, zero account setup required.</p>
+            <a href="privacy.html" class="btn btn-secondary" id="btnLearnPrivacy">Read Privacy Policy</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="privacy.html" id="linkFooterPrivacy">Privacy Policy</a>
+            <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" id="linkFooterEula">Terms of Use (EULA)</a>
+        </div>
+        <p>&copy; 2026 ZenPaw. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const translations = {
+            "en": {
+                heroTitle: "Focus, Grow, Companion",
+                heroSubtitle: "Transform your daily focus sessions into nourishing energy to adopt and grow loyal virtual companion pets. Fully local-first and privacy-focused.",
+                btnDownload: " App Store Download",
+                btnPrivacy: "Privacy Policy",
+                btnLearnPrivacy: "Read Privacy Policy",
+                linkFooterPrivacy: "Privacy Policy",
+                linkFooterEula: "Terms of Use (EULA)",
+                pricingTitle: "Get ZenPaw+ Premium",
+                pricingSubtitle: "Unlock unlimited virtual companion care, extra slots, and support shelter pets.",
+                p1Name: "Pro Monthly",
+                p1Price: "$3.79",
+                p1Features: [
+                    "Unlock salon service & hotel",
+                    "Enable custom widget templates",
+                    "Unlock Face ID privacy lock"
+                ],
+                p2Name: "Pro Annual",
+                p2Price: "$22.90",
+                p2Features: [
+                    "Includes 1-Week Free Trial",
+                    "Unlock all salon & hotel styles",
+                    "Face ID lock & Widgets",
+                    "Save 50% compared to monthly"
+                ],
+                p3Name: "Pro Lifetime",
+                p3Price: "$56.90",
+                p3Features: [
+                    "One-time purchase, forever pro",
+                    "Family Sharing enabled",
+                    "Supports real animal shelters",
+                    "Lifetime updates included"
+                ],
+                privacyCtaTitle: "Local-First Privacy Architecture",
+                privacyCtaDesc: "ZenPaw values your privacy above all. All focus logs, statistics, and companion pet data are securely processed locally using Apple SwiftData. Zero tracker, zero account setup required.",
+                features: [
+                    {
+                        title: "Focus Timer & Live Activities",
+                        desc: "Stay away from phone distractions. Keep track of focus session countdowns seamlessly with Lock Screen Live Activities and Dynamic Island integrations."
+                    },
+                    {
+                        title: "Companion Growth System",
+                        desc: "Earn focus coins to feed and bathe your pet. Guide them from cute baby stages up to adulthood, experiencing unique companionship milestones."
+                    },
+                    {
+                        title: "Burial Hall & Offspring",
+                        desc: "Give your senior pets a peaceful send-off at the Heaven Memorial Hall. Keep their legacy alive by adopting and raising their offspring."
+                    },
+                    {
+                        title: "Adopt Local",
+                        desc: "Connect with real-world local animal shelters. Find contact details and donation sites directly to support real shelter companions natively."
+                    }
+                ]
+            },
+            "zh-Hant": {
+                heroTitle: "專注，養育，深情陪伴",
+                heroSubtitle: "將您日常的專注力轉化為養育能量，認養並陪伴忠誠的虛擬寵物夥伴。完全在地化儲存，守護個人隱私。",
+                btnDownload: " App Store 下載連結",
+                btnPrivacy: "隱私權政策",
+                btnLearnPrivacy: "閱讀完整隱私政策",
+                linkFooterPrivacy: "隱私權政策",
+                linkFooterEula: "使用條款 (EULA)",
+                pricingTitle: "解鎖 ZenPaw+ 專業版",
+                pricingSubtitle: "享受無限次寵物互動、解鎖專屬美容造型服務與關聯本地收容所。",
+                p1Name: "Pro 月度訂閱",
+                p1Price: "$3.79 / 月",
+                p1Features: [
+                    "解鎖沙龍服務與高級旅館",
+                    "支援自訂桌面 Widget 小工具",
+                    "解鎖 Face ID 安全隱私鎖"
+                ],
+                p2Name: "Pro 年度訂閱",
+                p2Price: "$22.90 / 年",
+                p2Features: [
+                    "包含首週免費試用體驗",
+                    "解鎖全套沙龍與度假套裝",
+                    "支援 Face ID 鎖與桌面動態",
+                    "相比月租方案省下 50% 費用"
+                ],
+                p3Name: "Pro 終身無限版",
+                p3Price: "$56.90",
+                p3Features: [
+                    "一次買斷，永久享有 Pro 權益",
+                    "支援 Apple 家人共享功能",
+                    "用實際愛心導引支持流浪動物",
+                    "包含未來所有大版本升級"
+                ],
+                privacyCtaTitle: "純本地運作，極致安全",
+                privacyCtaDesc: "ZenPaw 堅持本地第一原則。您所有的專注記錄、統計資訊與寵物養育數據均保存在本機（使用 Apple SwiftData 技術）。不收集帳號，零外部追蹤器。",
+                features: [
+                    {
+                        title: "專注計時與即時動態",
+                        desc: "遠離手機干擾。整合 Lock Screen 即時動態與靈動島功能，無縫追蹤您的專注倒數狀態。"
+                    },
+                    {
+                        title: "寵物成長與養育系統",
+                        desc: "透過專注賺取專注幣，購買口糧、洗澡服務。陪伴夥伴經歷幼兒、少年到老年期，解鎖獨特里程碑。"
+                    },
+                    {
+                        title: "天堂紀念館與後代傳承",
+                        desc: "在老年期為夥伴舉辦溫馨的升天儀式，並在天堂紀念館中閱讀牠留下的信件。您還可以認養牠的後代，延續溫暖。"
+                    },
+                    {
+                        title: "本地愛心聯結 (Adopt Local)",
+                        desc: "設定專屬頁面，引導用戶連結至各當地區的流浪動物收容所與之家，直接進行真實捐助，避開佣金抽成。"
+                    }
+                ]
+            },
+            "zh-Hans": {
+                heroTitle: "专注，养成，温情陪伴",
+                heroSubtitle: "将您日常的专注力转化为养成能量，认养并陪伴忠诚的虚拟宠物伙伴。完全本地化存储，守护个人隐私。",
+                btnDownload: " App Store 下载链接",
+                btnPrivacy: "隐私政策",
+                btnLearnPrivacy: "阅读完整隐私政策",
+                linkFooterPrivacy: "隐私政策",
+                linkFooterEula: "使用条款 (EULA)",
+                pricingTitle: "解锁 ZenPaw+ 专业版",
+                pricingSubtitle: "享受无限次宠物互动、解锁专属美容造型服务与关联本地收容所。",
+                p1Name: "Pro 月度订阅",
+                p1Price: "$3.79 / 月",
+                p1Features: [
+                    "解锁沙龙服务与高级旅馆",
+                    "支持自定义桌面 Widget 小工具",
+                    "解锁 Face ID 安全隐私锁"
+                ],
+                p2Name: "Pro 年度订阅",
+                p2Price: "$22.90 / 年",
+                p2Features: [
+                    "包含首周免费试用体验",
+                    "解锁全套沙龙与度假套装",
+                    "支持 Face ID 锁与桌面动态",
+                    "相比月租方案省下 50% 费用"
+                ],
+                p3Name: "Pro 终身无限版",
+                p3Price: "$56.90",
+                p3Features: [
+                    "一次买断，永久享有 Pro 权益",
+                    "支持 Apple 家人共享功能",
+                    "用实际爱心引导支持流浪动物",
+                    "包含未来所有大版本升级"
+                ],
+                privacyCtaTitle: "纯本地运作，极致安全",
+                privacyCtaDesc: "ZenPaw 坚持本地第一原则。您所有的专注记录、统计信息与宠物养成数据均保存在本机（使用 Apple SwiftData 技术）。不收集账号，零外部追踪器。",
+                features: [
+                    {
+                        title: "专注计时与实时动态",
+                        desc: "远离手机干扰。整合 Lock Screen 实时动态与灵动岛功能，无缝追踪您的专注倒数状态。"
+                    },
+                    {
+                        title: "宠物成长与养育系统",
+                        desc: "通过专注赚取专注币，购买口粮、洗澡服务。陪伴伙伴经历幼儿、少年到老年期，解锁独特里程碑。"
+                    },
+                    {
+                        title: "天堂纪念馆与后代传承",
+                        desc: "在老年期为伙伴举办温馨的升天仪式，并在天堂纪念馆中阅读它留下的信件。您还可以认养它的后代，延续温暖。"
+                    },
+                    {
+                        title: "本地爱心联结 (Adopt Local)",
+                        desc: "设定专属页面，引导用户链接至各当地区的流浪动物收容所与之家，直接进行真实捐助，避开佣金抽成。"
+                    }
+                ]
+            },
+            "ja": {
+                heroTitle: "集中、育成、そして寄り添う",
+                heroSubtitle: "日々の集中セッションを育成エネルギーに変え、忠実なバーチャルペットを養育しましょう。完全にローカルファーストで、プライバシーも安心です。",
+                btnDownload: " App Store からダウンロード",
+                btnPrivacy: "プライバシーポリシー",
+                btnLearnPrivacy: "プライバシーポリシーを読む",
+                linkFooterPrivacy: "プライバシーポリシー",
+                linkFooterEula: "利用規約 (EULA)",
+                pricingTitle: "ZenPaw+ プレミアムプラン",
+                pricingSubtitle: "ペットとの無制限のやり取り、限定サロンサービス、避難所支援をアンロックしましょう。",
+                p1Name: "Pro 月間プラン",
+                p1Price: "¥580 / 月",
+                p1Features: [
+                    "サロンサービスと高級ホテルの解放",
+                    "カスタムウィジェットの有効化",
+                    "Face IDによるプライバシーロック"
+                ],
+                p2Name: "Pro 年間プラン",
+                p2Price: "¥3,400 / 年",
+                p2Features: [
+                    "1週間の無料トライアル付き",
+                    "すべてのサロンとホテルスタイルのアンロック",
+                    "Face IDロックとウィジェット",
+                    "月額プランより50%お得"
+                ],
+                p3Name: "Pro ライフタイム",
+                p3Price: "¥8,500",
+                p3Features: [
+                    "買い切り、永久にPro権利を提供",
+                    "ファミリー共有の有効化",
+                    "現実世界の動物避難所への支援案内",
+                    "将来のアップグレードを生涯提供"
+                ],
+                privacyCtaTitle: "安心のローカルプライバシー設計",
+                privacyCtaDesc: "ZenPawはあなたのプライバシーを最も重視します。すべての集中ログ、統計、ペットの育成データは、Apple SwiftDataを用いて端末内で安全に処理されます。アカウント作成や外部送信は一切不要です。",
+                features: [
+                    {
+                        title: "集中タイマーとライブアクティビティ",
+                        desc: "スマホの誘惑を断ち切る。ロック画面のライブアクティビティとダイナミックアイランドで、集中タイマーをリアルタイム追跡。"
+                    },
+                    {
+                        title: "ペットの育成システム",
+                        desc: "集中してコインを獲得し、フードやシャワーを与えます。赤ちゃんからシニアまで、ペットの生涯に寄り添い、絆を深めましょう。"
+                    },
+                    {
+                        title: "レインボーブリッジと後代",
+                        desc: "歳をとったペットを天国記念館へ見送り、手紙を読みましょう。その遺志を継いで後代を育成し、愛の旅路をつなぎます。"
+                    },
+                    {
+                        title: "地域避難所への案内 (Adopt Local)",
+                        desc: "ユーザーが地域の流浪動物保護サイトや連絡先にアクセスし、手数料なしで直接現実の動物たちを支援できるように導きます。"
+                    }
+                ]
+            },
+            "ko": {
+                heroTitle: "집중, 성장, 그리고 온전한 동행",
+                heroSubtitle: "일상의 집중 시간을 성장 에너지로 전환하여 충성스러운 가상 반려동물을 입양하고 키워보세요. 완벽한 로컬 우선 저장으로 프라이버시를 안전하게 보호합니다.",
+                btnDownload: " App Store 다운로드",
+                btnPrivacy: "개인정보 처리방침",
+                btnLearnPrivacy: "개인정보 처리방침 읽기",
+                linkFooterPrivacy: "개인정보 처리방침",
+                linkFooterEula: "이용 약관 (EULA)",
+                pricingTitle: "ZenPaw+ 프리미엄 혜택",
+                pricingSubtitle: "반려동물과의 무제한 교감, 전용 미용 살롱 및 보호소 안내 서비스를 제공합니다.",
+                p1Name: "Pro 월간 구독",
+                p1Price: "₩5,500 / 월",
+                p1Features: [
+                    "살롱 서비스 및 고급 호텔 잠금 해제",
+                    "데스크톱 위젯 커스텀 템플릿 지원",
+                    "Face ID 보안 프라이버시 잠금"
+                ],
+                p2Name: "Pro 연간 구독",
+                p2Price: "₩33,000 / 년",
+                p2Features: [
+                    "첫 1주일 무료 체험 포함",
+                    "모든 미용 스타일 및 리조트 테마 해제",
+                    "Face ID 잠금 및 홈 화면 위젯",
+                    "월간 구독 대비 50% 비용 절감"
+                ],
+                p3Name: "Pro 평생 구매",
+                p3Price: "₩85,000",
+                p3Features: [
+                    "단 한 번 구매로 평생 Pro 혜택 유지",
+                    "Apple 가족 공유 지원",
+                    "지역 유기동물 보호소 직접 기부 안내",
+                    "평생 동안 모든 신규 업데이트 포함"
+                ],
+                privacyCtaTitle: "기기 내부 안전 저장 원칙",
+                privacyCtaDesc: "ZenPaw는 사용자의 개인정보를 최우선으로 생각합니다. 모든 집중 기록, 통계 및 반려동물 성장 데이터는 Apple SwiftData를 통해 기기 내부에만 안전하게 처리됩니다. 추적기나 회원가입은 전혀 없습니다.",
+                features: [
+                    {
+                        title: "집중 타이머와 실시간 현황",
+                        desc: "스마트폰 방해 요소로부터 해방. 잠금 화면의 실시간 현황(Live Activities) 및 다이내믹 아일랜드와 완벽 연동되어 집중 상태를 유지합니다."
+                    },
+                    {
+                        title: "반려동물 육성 시스템",
+                        desc: "집중을 완료하고 모은 코인으로 사료와 목욕 서비스를 구매하세요. 아기 단계부터 성체까지 성장하는 반려 친구들과 소중한 순간들을 채워 나갑니다."
+                    },
+                    {
+                        title: "무지개다리와 대물림 입양",
+                        desc: "천국 기념관에서 시니어 동반 친구의 마지막 배웅과 편지를 확인하세요. 그들의 후대를 다시 맞이하여 사랑의 고리를 이어갑니다."
+                    },
+                    {
+                        title: "지역 유기동물 보호소 연계 (Adopt Local)",
+                        desc: "중간 수수료나 플랫폼 요금 없이, 사용자가 자신이 거주하는 지역의 동물보호 단체와 보호소를 찾아 직접 기부하고 도울 수 있는 안내판을 제공합니다."
+                    }
+                ]
+            }
+        };
+
+        function switchLanguage(lang) {
+            const t = translations[lang] || translations["en"];
+            document.documentElement.lang = lang;
+            
+            document.getElementById("heroTitle").textContent = t.heroTitle;
+            document.getElementById("heroSubtitle").textContent = t.heroSubtitle;
+            document.getElementById("btnDownload").textContent = t.btnDownload;
+            document.getElementById("btnPrivacy").textContent = t.btnPrivacy;
+            document.getElementById("btnLearnPrivacy").textContent = t.btnLearnPrivacy;
+            document.getElementById("linkFooterPrivacy").textContent = t.linkFooterPrivacy;
+            document.getElementById("linkFooterEula").textContent = t.linkFooterEula;
+            document.getElementById("pricingTitle").textContent = t.pricingTitle;
+            document.getElementById("pricingSubtitle").textContent = t.pricingSubtitle;
+            document.getElementById("privacyCtaTitle").textContent = t.privacyCtaTitle;
+            document.getElementById("privacyCtaDesc").textContent = t.privacyCtaDesc;
+
+            // Update Features
+            const featureCards = document.querySelectorAll("#featuresSection .feature-card");
+            t.features.forEach((feat, index) => {
+                if (featureCards[index]) {
+                    featureCards[index].querySelector(".f-title").textContent = feat.title;
+                    featureCards[index].querySelector(".f-desc").textContent = feat.desc;
+                }
+            });
+
+            // Update Pricing
+            document.getElementById("p1Name").textContent = t.p1Name;
+            document.getElementById("p1Price").textContent = t.p1Price;
+            updateListItems("p1Features", t.p1Features);
+
+            document.getElementById("p2Name").textContent = t.p2Name;
+            document.getElementById("p2Price").textContent = t.p2Price;
+            updateListItems("p2Features", t.p2Features);
+
+            document.getElementById("p3Name").textContent = t.p3Name;
+            document.getElementById("p3Price").textContent = t.p3Price;
+            updateListItems("p3Features", t.p3Features);
+        }
+
+        function updateListItems(elementId, itemsArray) {
+            const list = document.getElementById(elementId);
+            list.innerHTML = "";
+            itemsArray.forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = item;
+                list.appendChild(li);
+            });
+        }
+
+        // Initialize default
+        switchLanguage("en");
+    </script>
+</body>
+</html>
