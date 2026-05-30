@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZenPaw - Privacy Policy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #111827;
+            --accent-sage: #84a98c;
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --card-border: rgba(255, 255, 255, 0.08);
+            --card-bg: rgba(255, 255, 255, 0.03);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            margin-bottom: 8px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .subtitle {
+            color: var(--accent-sage);
+            font-weight: 600;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        h2 {
+            font-size: 1.4rem;
+            margin-top: 32px;
+            margin-bottom: 12px;
+            color: #fff;
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 6px;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+        }
+
+        ul {
+            list-style: disc;
+            margin-left: 20px;
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        ul li {
+            margin-bottom: 8px;
+        }
+
+        .lang-toggle {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 40px;
+            justify-content: flex-end;
+        }
+
+        .lang-btn {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-primary);
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active, .lang-btn:hover {
+            background-color: var(--accent-sage);
+            color: var(--bg-primary);
+            border-color: var(--accent-sage);
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        footer a {
+            color: var(--accent-sage);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 24px;
+            }
+            h1 {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="lang-toggle">
+            <button class="lang-btn active" onclick="showLang('en')">English</button>
+            <button class="lang-btn" onclick="showLang('zh')">繁體中文</button>
+        </div>
+
+        <!-- English Section -->
+        <div id="lang-en" class="section active">
+            <h1>🛡️ Privacy Policy</h1>
+            <div class="subtitle">Effective Date: May 30, 2026</div>
+
+            <p>Welcome to ZenPaw. We value your privacy and are committed to protecting your personal information. ZenPaw is designed from the ground up as a <strong>local-first application</strong>, meaning we minimize data collection and storage on remote servers.</p>
+
+            <h2>1. Information Collection and Storage</h2>
+            <p>All data generated in ZenPaw is processed and stored locally on your device using Apple's SwiftData local storage model. This includes:</p>
+            <ul>
+                <li>Focus session logs (durations, sessions count, statistics).</li>
+                <li>Virtual companion pet details (names, breed choices, levels, growth stages, interaction metrics).</li>
+                <li>Application configuration settings (language preferences, biometric lock settings).</li>
+            </ul>
+            <p><strong>We do not run remote data storage servers.</strong> Your focus logs and companion pets stay entirely on your physical device.</p>
+
+            <h2>2. Accounts and Registrations</h2>
+            <p>You do not need to register an account, set up a profile, or link an email address to use ZenPaw. No sign-ups are requested, preventing account identity leakage.</p>
+
+            <h2>3. Subscriptions and Payments</h2>
+            <p>In-app purchases and auto-renewable subscriptions (ZenPaw+ Pro) are processed securely through the Apple App Store billing API and managed by RevenueCat. RevenueCat only validates subscription purchase receipts. We do not collect or store your billing data, credit card numbers, or banking credentials.</p>
+
+            <h2>4. Biometric Authentication (Face ID)</h2>
+            <p>If you enable the biometric lock feature, authorization is verified directly by the iOS LocalAuthentication framework on your hardware. ZenPaw does not access, collect, or transmit your biometric identifiers, raw Face ID face maps, or passcode strings.</p>
+
+            <h2>5. External Links (Adopt Local)</h2>
+            <p>ZenPaw features a Local Shelter Directory linking to independent animal shelters (website URLs or telephone links). If you click these links, you will open external web sites or telephone dialer prompts. We do not track your donations, inquiries, or interaction details with these organizations.</p>
+
+            <h2>6. Third-Party Analytics</h2>
+            <p>ZenPaw does not integrate any third-party tracking networks, data broker SDKs, or invasive advertisement analytics. We keep the application completely transparent and light.</p>
+
+            <h2>7. Contact Us</h2>
+            <p>If you have any questions about this Privacy Policy, feel free to contact us:</p>
+            <ul>
+                <li>Email: <a href="mailto:support@zenpaw.app" style="color: var(--accent-sage);">support@zenpaw.app</a></li>
+            </ul>
+        </div>
+
+        <!-- Traditional Chinese Section -->
+        <div id="lang-zh" class="section">
+            <h1>🛡️ 隱私權政策</h1>
+            <div class="subtitle">生效日期：2026 年 5 月 30 日</div>
+
+            <p>歡迎使用 ZenPaw。我們深知隱私對您的重要性，並承諾保護您的個人資訊。ZenPaw 自設計之初即堅持<strong>本機優先 (Local-First)</strong> 的核心理念，意即所有核心數據皆儲存於用戶本地端，不收集亦不向雲端發送任何敏感行為紀錄。</p>
+
+            <h2>1. 資訊收集與本機儲存</h2>
+            <p>您在 ZenPaw 中產生的所有專注力數據和養成記錄，皆直接保存在您本地的 Apple SwiftData 資料庫中。這包括：</p>
+            <ul>
+                <li>您的專注紀錄（每次專注的時長、次數、每週統計）。</li>
+                <li>您認養的虛擬夥伴資訊（姓名、品種、毛色、成長進度、互动紀錄）。</li>
+                <li>應用程式偏好設定（介面語言、安全鎖開關狀態）。</li>
+            </ul>
+            <p><strong>我們不架設任何收集用戶數據的遠端伺服器。</strong>您的個人專注和夥伴成長日誌均專屬於您的硬體設備。</p>
+
+            <h2>2. 帳號註冊與辨識</h2>
+            <p>使用 ZenPaw 無需註冊帳號、登入個人資料或綁定任何社交帳戶。這可完全杜絕帳戶資料外洩的風險。</p>
+
+            <h2>3. 訂閱與支付</h2>
+            <p>應用程式內的所有付費與訂閱（ZenPaw+ Pro）交易均經由 Apple App Store 官方支付系統處理，並透過 RevenueCat 提供安全的訂閱憑證查驗。我們不會經手、收集或儲存您的支付方式、信用卡卡號或交易明細。</p>
+
+            <h2>4. 生物辨識安全鎖 (Face ID)</h2>
+            <p>若您在設定中開啟了安全解鎖功能，系統將呼叫 iOS 官方的 `LocalAuthentication` 框架在本機進行臉部辨識 (Face ID) 或密碼解鎖驗證。我們無權且無法讀取您的脸部生物特徵或本機密碼。</p>
+
+            <h2>5. 本地愛心聯結 (Adopt Local)</h2>
+            <p>當您點選天堂紀念館的外連收容所資訊時，系統會開啟外部瀏覽器網頁或撥打電話。我們不收集、不監控您在外部網站所進行的認養洽詢、捐助交易或其他私人通訊行為。</p>
+
+            <h2>6. 第三方分析與追蹤</h2>
+            <p>ZenPaw 承諾不植入任何外部广告追蹤 SDK、資料庫中介分析器或使用者習慣追蹤系統。只為您提供最乾淨、最純粹的專注養育體驗。</p>
+
+            <h2>7. 聯絡我們</h2>
+            <p>如果您對本隱私政策有任何疑問，歡迎隨時與我們聯絡：</p>
+            <ul>
+                <li>電子信箱：<a href="mailto:support@zenpaw.app" style="color: var(--accent-sage);">support@zenpaw.app</a></li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 ZenPaw. All rights reserved. <a href="index.html">Back to Home</a></p>
+        </footer>
+    </div>
+
+    <script>
+        function showLang(lang) {
+            // Remove active class from all buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // Add active class to clicked button
+            const clickedBtn = event.target;
+            clickedBtn.classList.add('active');
+
+            // Toggle sections
+            document.querySelectorAll('.section').forEach(sec => {
+                sec.classList.remove('active');
+            });
+            document.getElementById('lang-' + lang).classList.add('active');
+            document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : 'en';
+        }
+    </script>
+</body>
+</html>
